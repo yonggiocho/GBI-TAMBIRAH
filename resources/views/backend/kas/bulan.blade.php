@@ -1,5 +1,11 @@
 @extends('backend.layouts.app')
 
+@push('script')
+
+<script src="{{asset('assets/backend/js/vendor/sweetalert2.all.min.js')}}"></script>
+
+@endpush
+
 @section('content-backend')
 <div class="container-fluid">
 
@@ -75,7 +81,15 @@
                         <h3 class="text-primary float-start mt-0">{{ $namaBulan[$b->bulan] }}</h3>
                         <div class="ribbon-content">
                             <p class="card-text">Klik lanjutkan untuk pengisian</p>
-                            <a href="{{ route('kas.showTransaksi', [$tahun->id, $b->id]) }}" class="btn btn-primary btn-sm">Lanjutkan</a>
+                            <a href="{{ route('kas.showTransaksi', [$tahun->id, $b->id]) }}" class="btn btn-outline-primary btn-sm"> <i class="mdi mdi-arrow-right-thick"></i> Lanjutkan</a>
+                            <form id="formHapus" action="{{route('backend.kasBulan.delete', $b->id)}}" method="POST" style="display: inline-block;">
+                                @method('DELETE')
+                                @csrf
+                                    <button id="hapusBulan" class="btn btn-outline-danger btn-sm" type="submit">
+                                        <i class="mdi mdi-delete-outline"></i>Hapus
+                                    </button>
+                            </form>
+
                         </div>
                     </div> <!-- end card-body -->
                 </div> <!-- end card-->
@@ -85,3 +99,36 @@
 
 </div>
 @endsection
+
+@push('alerts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const tombolHapus = document.querySelectorAll('#hapusBulan');
+
+        tombolHapus.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const form = this.closest('form');
+
+            Swal.fire({
+              title: 'Hapus Bulan!',
+              text : 'Apakah anda yakin ingin menghapus daftar bulan?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Ya, hapus!',
+              cancelButtonText: 'Batal'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                form.submit(); // Submit form kalau dikonfirmasi
+              }
+            });
+          });
+        });
+      });
+    </script>
+
+@endpush
+

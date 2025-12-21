@@ -28,7 +28,7 @@ class ProfilViewController extends Controller
 
     public function pengurusView()
     {
-        $data = DB::table('pengurus')->get();
+        $data = DB::table('pengurus')->orderBy('urutan','asc')->get();
         return view('frontend.profil.pengurus', [
             'pengurus' => $data,
             'breadcrumbs' => ['Beranda', 'Profil', 'Pengurus']

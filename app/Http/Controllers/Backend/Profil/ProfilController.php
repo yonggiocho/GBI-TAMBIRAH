@@ -158,7 +158,7 @@ class ProfilController extends Controller
     //fungsi pengurus
     public function pengurusIndex()
     {
-        $data = DB::table('pengurus')->get();
+        $data = DB::table('pengurus')->orderBy('urutan','asc')->get();
         return $data ? view('backend.profil.pengurus.pengurus',
         [
             'pengurus' => $data
@@ -177,12 +177,14 @@ class ProfilController extends Controller
             'gelar_depan' => 'string|max:6',
             'gelar_belakang' => 'string|max:6',
             'jabatan' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'urutan' => 'required|integer|unique:pengurus,urutan',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $urutan = DB::table('pengurus')->max('urutan') ?? 0;
+
         $validasiData['id'] = 'pgrs_' . Str::uuid();
-        $validasiData['urutan'] = $urutan + 1;
+
 
           if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
@@ -220,8 +222,10 @@ class ProfilController extends Controller
             'gelar_depan' => 'string|max:6',
             'gelar_belakang' => 'string|max:6',
             'jabatan' => 'required|string|max:255',
+            'urutan' => 'required|integer|unique:pengurus,urutan,'. $id,
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
+
 
         $pengurus = DB::table('pengurus')->where('id', $id)->first();
 
@@ -229,7 +233,7 @@ class ProfilController extends Controller
             abort(404);
         }
 
-        $validasiData['urutan'] = $pengurus->urutan;
+
 
           if ($request->hasFile('gambar')) {
 

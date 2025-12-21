@@ -64,6 +64,16 @@
                                                       @enderror
                                                 </div>
 
+                                                <div class="mb-3">
+                                                    <label for="jabatan" class="form-label">Jabatan</label>
+                                                    <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan" value="{{ old('jabatan',$pengurus->jabatan)}}">
+                                                      @error('jabatan')
+                                                        <small class="form-text text-danger">
+                                                          {{$message}}
+                                                        </small>
+                                                      @enderror
+                                                </div>
+
 
 
                                           </div> <!-- end col-->
@@ -71,10 +81,12 @@
 
 
                                           <div class="col-xl-6">
-                                                 <div class="mb-3">
-                                                    <label for="jabatan" class="form-label">Jabatan</label>
-                                                    <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan" value="{{ old('jabatan',$pengurus->jabatan)}}">
-                                                      @error('jabatan')
+
+
+                                                <div class="mb-3">
+                                                    <label for="urutan" class="form-label">Urutan</label>
+                                                    <input type="number" name="urutan" id="urutan" class="form-control" placeholder="Urutan" value="{{ old('urutan',$pengurus->urutan)}}">
+                                                      @error('urutan')
                                                         <small class="form-text text-danger">
                                                           {{$message}}
                                                         </small>

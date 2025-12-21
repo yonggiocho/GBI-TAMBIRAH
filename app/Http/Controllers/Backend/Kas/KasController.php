@@ -98,6 +98,15 @@ class KasController extends Controller
         return back()->with('success', 'Bulan berhasil ditambahkan.');
     }
 
+    public function destroyBulan(string $bulan_id)
+    {
+        $kas = KasBulan::findOrFail($bulan_id);
+        $kas->delete();
+        Alert::success('Terhapus', 'Data Bulan berhasil dihapus');
+        return back();
+
+    }
+
     public function showTransaksi($tahunId, $bulanId)
     {
         $bulan = KasBulan::findOrFail($bulanId);

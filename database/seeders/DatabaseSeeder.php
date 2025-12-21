@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Yonggi Kawoco',
                 'email' => 'jajiut@gmail.com',
-                'password' => '12345678',
-                'pass_hint' => Crypt::encrypt('12345678'),
+                'password' => 'Gbisehati2025',
+                'pass_hint' => Crypt::encrypt('Gbisehati2025'),
                 'role' => 'admin'
             ],
             [
                 'name' => 'Jefri Holmes Mandey',
-                'email' => 'jeje@gmail.com',
-                'password' => '12345678',
-                'pass_hint' => Crypt::encrypt('12345678'),
+                'email' => 'pleasecall.jeje@gmail.com',
+                'password' => 'Gbisehati2025',
+                'pass_hint' => Crypt::encrypt('Gbisehati2025'),
                 'role' => 'admin'
             ]
         ];

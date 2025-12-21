@@ -156,7 +156,9 @@ Route::prefix('backend/kas')->middleware('auth')->controller(KasController::clas
         Route::put('/status/{bulan}/{status}',  'updateStatusKas')->name('kas.status.update');
         Route::get('/{tahun}', 'showBulan')->name('kas.showBulan');
         Route::post('/{tahun}/tambah-bulan',  'tambahBulan')->name('kas.tambahBulan');
+        Route::delete('/{bulan_id}/delete', 'destroyBulan')->name('backend.kasBulan.delete');
         Route::get('/{tahun}/{bulan}', 'showTransaksi')->name('kas.showTransaksi');
         Route::post('/{tahun}/{bulan}/transaksi',  'storeTransaksi')->name('kas.storeTransaksi');
         Route::delete('/{id}/delete', 'destroyTransaksi')->name('backend.kas.delete');
+
 });

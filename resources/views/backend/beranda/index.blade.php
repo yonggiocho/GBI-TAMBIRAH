@@ -21,7 +21,7 @@
                              <div class="col-12">
                                 <div class="alert alert-success" role="alert">
                                     <h3 class="alert-heading">Selamat Datang, {{auth()->user()->name}}!</h3>
-                                    <p>Dashboard Manajemen Gereja dan Pengelolaan Konten Website <strong> {{$identitas?->nama_website??'Nama website'}} </strong>  </p>
+                                    <p>Dashboard Pengelolaan Konten Website <strong> {{$identitas?->nama_website??'Nama website'}} </strong>  </p>
 
                                 </div>
                             </div>
