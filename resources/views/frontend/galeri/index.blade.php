@@ -22,7 +22,7 @@
 
                                 <a href="{{ asset('storage/'.$galeri->gambar) }}" data-lightbox="gbi-tambirah" data-title="{{substr($galeri->judul,0,120)}}">
 
-                                    <img src="{{ asset('storage/'.$galeri->gambar) }}" class="img-fluid img-thumbnail" alt="judul" style="height:300px; width:320px; object-fit:cover;"  >
+                                    <img src="{{ asset('storage/'.$galeri->gambar) }}" class="img-fluid img-thumbnail" alt="judul" style="width:100%; height:300px; object-fit:cover;"  >
 
                                 </a>
 
