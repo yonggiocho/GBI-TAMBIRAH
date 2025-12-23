@@ -59,9 +59,9 @@
                                     style="padding: 10px; height:300px; object-fit: cover;">
                                 </a>
                                 <!-- Nama -->
-                                <h6 class="card-title fw-bold">{{$p->jabatan}}</h6>
+                                <h6 class="card-title fw-bold">{{$p->gelar_depan == '-' ? '' : $p->gelar_depan.'. '}}{{$p->nama}}{{$p->gelar_belakang == '-' ? '':', '.$p->gelar_belakang}}</h6>
                                 <!-- Jabatan -->
-                                <p class="card-text">{{$p->gelar_depan == '-' ? '' : $p->gelar_depan.'. '}}{{$p->nama}}{{$p->gelar_belakang == '-' ? '':', '.$p->gelar_belakang}}</p>
+                                <p class="card-text">{{$p->jabatan}}</p>
                                 </div>
                             </div>
                         </div>
