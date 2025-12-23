@@ -34,10 +34,13 @@ class AppServiceProvider extends ServiceProvider
         $identitas = Identitas::first();
         $banner = Banner::first();
 
-        View::share([
-            'identitas' => $identitas,
-            'banner'    => $banner,
-        ]);
+
+        if (Schema::hasTable('identitas')) {
+            View::share([
+                'identitas' => $identitas,
+                'banner'    => $banner,
+            ]);
+        }
 
         RateLimiter::for('login', function (Request $request) {
         $email = (string) $request->input('email');
