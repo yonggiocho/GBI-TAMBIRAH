@@ -31,14 +31,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('vendor.pagination.custom-pagination');
 
 
-        $identitas = Identitas::first();
-        $banner = Banner::first();
-
 
         if (Schema::hasTable('identitas')) {
             View::share([
-                'identitas' => $identitas,
-                'banner'    => $banner,
+                'identitas' => Identitas::first(),
+                'banner'    => Banner::first(),
             ]);
         }
 
