@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Beranda\BerandaController;
 use App\Http\Controllers\Backend\Profil\ProfilController;
 use App\Http\Controllers\Backend\Warta\WartaController;
 use App\Http\Controllers\Backend\Renungan\RenunganController;
+use App\Http\Controllers\Backend\Renungan\RenunganKategoriController;
 use App\Http\Controllers\Backend\Galeri\GaleriController;
 use App\Http\Controllers\Backend\Identitas\IdentitasController;
 use App\Http\Controllers\Backend\Banner\BannerController;
@@ -97,6 +98,16 @@ Route::prefix('backend/renungan')->middleware('auth')->controller(RenunganContro
         Route::put('/{id}', 'update')->name('backend.renungan.update');
         Route::delete('/{id}/delete', 'destroy')->name('backend.renungan.delete');
 });
+
+Route::prefix('backend/renungan/kategori')->middleware('auth')->controller(RenunganKategoriController::class)->group(function () {
+        Route::get('/', 'index')->name('backend.kategori.renungan');
+        Route::get('/create', 'create')->name('backend.kategori.renungan.create');
+        Route::post('/', 'store')->name('backend.kategori.renungan.store');
+        Route::match(['get', 'post'],'/{id}/edit', 'edit')->name('backend.kategori.renungan.edit');
+        Route::put('/{id}', 'update')->name('backend.kategori.renungan.update');
+        Route::delete('/{id}/delete', 'destroy')->name('backend.kategori.renungan.delete');
+});
+
 
 Route::prefix('backend/galeri')->middleware('auth')->controller(GaleriController::class)->group(function () {
         Route::get('/', 'index')->name('backend.galeri');

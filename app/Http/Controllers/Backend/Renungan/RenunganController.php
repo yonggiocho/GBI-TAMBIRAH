@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Renungan;
 
 
 use App\Models\Renungan;
+use App\Models\KategoriRenungan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +41,6 @@ class RenunganController extends Controller
         }
 
 
-
     public function index()
     {
         $renungans = Renungan::latest()->get();
@@ -49,13 +49,15 @@ class RenunganController extends Controller
 
     public function create()
     {
-        return view('backend.renungan.renungan-add');
+        $kategoris = KategoriRenungan::orderBy('slug', 'asc')->get();
+        return view('backend.renungan.renungan-add',compact('kategoris'));
     }
 
     public function store(Request $request)
     {
         $validasiData = $request->validate([
             'judul' => 'required|string|max:255',
+            'kategori' => 'required|string',
             'isi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
@@ -73,7 +75,7 @@ class RenunganController extends Controller
            Renungan::create([
             'judul' => strip_tags($validasiData['judul']),
             'slug' => $this->makeSlug($validasiData['judul']),
-            'kategori' => 'Renungan',
+            'kategori' => strip_tags($validasiData['kategori']),
             'isi' => $this->filterInput($validasiData['isi']),
             'penulis' => auth()->user()->name,
             'gambar' => $validasiData['gambar']
@@ -88,8 +90,8 @@ class RenunganController extends Controller
     public function edit(string $id)
     {
         $renungan = Renungan::findOrFail($id);
-        return view('backend.renungan.renungan-edit', compact('renungan'));
-
+        $kategoris = KategoriRenungan::orderBy('slug', 'asc')->get();
+        return view('backend.renungan.renungan-edit', compact('renungan','kategoris'));
     }
 
     public function updateStatus(string $id, string $status)
@@ -108,6 +110,7 @@ class RenunganController extends Controller
     {
         $validasiData = $request->validate([
             'judul' => 'required|string|max:255',
+            'kategori' => 'required|string',
             'isi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
@@ -131,6 +134,7 @@ class RenunganController extends Controller
            $renungan->update([
                 'judul' => strip_tags($validasiData['judul']),
                 'slug' => $this->makeSlug($validasiData['judul']),
+                'kategori' => strip_tags($validasiData['kategori']),
                 'isi' => $this->filterInput($validasiData['isi']),
                 'gambar' => $validasiData['gambar']
             ]);

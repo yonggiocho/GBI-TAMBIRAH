@@ -71,7 +71,7 @@
 
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">Email</label>
-                                        <input class="form-control" type="email" id="emailaddress" name="email" placeholder="Masukkan email anda">
+                                        <input class="form-control" type="email" id="emailaddress" name="email" value="{{old('email')}}" placeholder="Masukkan email anda">
                                         @error('email')
                                             <small class="form-text text-danger">
                                                 {{$message}}

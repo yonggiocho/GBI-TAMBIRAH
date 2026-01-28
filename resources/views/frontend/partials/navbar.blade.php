@@ -1,4 +1,4 @@
-<nav id="navmenu" class="navmenu">
+    <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{{route('beranda')}}" class="{{ request()->routeIs('beranda') ? 'active' : '' }}">Beranda</a></li>
          <li class="dropdown "><a href="{{route('profil.sejarah')}}" class="{{ request()->routeIs('profil*') ? 'active' : '' }}"><span>Profil</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>

@@ -1,19 +1,31 @@
 @extends('backend.layouts.app')
-@push('script')
-<script src="{{asset('assets')}}/backend/js/vendor/summernote-lite.min.js"></script>
-  <script>
-    $('#isi-renungan').summernote({
-        placeholder: 'Tulis isi renungan di sini...',
-        tabsize: 2,
-        height: 250,
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline']],
-            ['font', ['fontsize']],
-            ['para', ['paragraph']]
-        ]
-    });
-</script>
+
+@push('styles')
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+  <style>
+      .select2-container--bootstrap-5 .select2-selection {
+
+          border-color: #ced4da !important;
+          padding: 0.5rem 0.75rem !important;
+          min-height: 45px !important;
+          box-shadow: none !important;
+          transition: box-shadow 0.2s ease;
+      }
+
+      .select2-container--bootstrap-5 .select2-selection:focus {
+          border-color: #86b7fe !important;
+          box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25) !important;
+      }
+
+      .select2-dropdown {
+          border-radius: 0.75rem !important;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+      }
+  </style>
+
 @endpush
+
 
 @section('content-backend')
 
@@ -56,6 +68,21 @@
                                                 </div>
 
 
+                                                <div class="mb-3">
+                                                        <label for="nameSelect" class="form-label">Kategori</label>
+                                                        <select class="form-select select2" name="kategori" id="nameSelect" >
+                                                            <option value="" hidden>Pilih Kategori</option>
+                                                            @foreach($kategoris as $kategori)
+                                                                <option value="{{$kategori->kategori}}" {{old('kategori') == $kategori->kategori ? 'selected':''}}>{{ $kategori->kategori }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('kategori')
+                                                        <small class="form-text text-danger">
+                                                          {{$message}}
+                                                        </small>
+                                                      @enderror
+
+                                                  </div>
 
                                                 <div class="mb-3">
                                                     <label for="isi" class="form-label">Isi</label>
@@ -66,6 +93,7 @@
                                                             <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
+
 
                                                 <div class="mb-3">
                                                     <label for="gambar" class="form-label">Gambar</label>
@@ -118,5 +146,33 @@
       </div> <!-- container -->
 
 
+@push('script')
+<script src="{{asset('assets')}}/backend/js/vendor/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('.select2').select2({
+        theme: 'bootstrap-5'
+    });
+});
+</script>
+
+
+  <script>
+    $('#isi-renungan').summernote({
+        placeholder: 'Tulis isi renungan di sini...',
+        tabsize: 2,
+        height: 250,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline']],
+            ['font', ['fontsize']],
+            ['para', ['paragraph']]
+        ]
+    });
+</script>
+@endpush
+
 
 @endsection
+

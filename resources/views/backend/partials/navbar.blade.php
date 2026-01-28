@@ -60,19 +60,32 @@
                             </div>
                         </li>
 
-                        <li class="side-nav-item {{ request()->routeIs('backend.warta*') ? 'menuitem-active' : '' }}">
+                        <li class="side-nav-item {{ request()->routeIs('backend.kategori.renungan*','backend.renungan*') ? 'menuitem-active' : '' }}">
+                           <a data-bs-toggle="collapse" href="#renungan" aria-expanded="false" aria-controls="renungan" class="side-nav-link">
+                               <i class="uil-notebooks"></i>
+                               <span>Renungan</span>
+                               <span class="menu-arrow"></span>
+                           </a>
+                           <div class="collapse {{ request()->routeIs('backend.kategori.renungan*','backend.renungan*') ? 'show' : '' }}" id="renungan">
+                               <ul class="side-nav-second-level">
+                                   <li class="{{ request()->routeIs('backend.kategori.renungan*') ? 'menuitem-active' : '' }}">
+                                       <a href="{{route('backend.kategori.renungan')}}">Kategori</a>
+                                   </li>
+                                   <li class="{{ request()->routeIs('backend.renungan*') ? 'menuitem-active' : '' }}">
+                                       <a href="{{route('backend.renungan')}}">Renungan</a>
+                                   </li>
+                               </ul>
+                           </div>
+                       </li>
+
+                       <li class="side-nav-item {{ request()->routeIs('backend.warta*') ? 'menuitem-active' : '' }}">
                             <a href="{{route('backend.warta')}}" class="side-nav-link">
                                 <i class="uil-newspaper"></i>
                                 <span>Warta</span>
                             </a>
                         </li>
 
-                        <li class="side-nav-item  {{ request()->routeIs('backend.renungan*') ? 'menuitem-active' : '' }}">
-                            <a href="{{route('backend.renungan')}}" class="side-nav-link">
-                                <i class="uil-notebooks"></i>
-                                <span>Renungan</span>
-                            </a>
-                        </li>
+
 
                         <li class="side-nav-item  {{ request()->routeIs('backend.galeri*') ? 'menuitem-active' : '' }}">
                             <a href="{{route('backend.galeri')}}" class="side-nav-link">
