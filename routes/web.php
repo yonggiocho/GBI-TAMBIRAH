@@ -35,6 +35,7 @@ Route::get('/warta', [WartaViewController::class,'warta'])->name('warta');
 Route::get('/warta/detail/{slug}', [WartaViewController::class,'detail'])->name('warta.detail');
 
 Route::get('/renungan', [RenunganViewController::class,'renungan'])->name('renungan');
+Route::get('/renungan/kategori/{kategori}', [RenunganViewController::class,'renunganKategori'])->name('renungan.kategori');
 Route::get('/renungan/detail/{slug}', [RenunganViewController::class,'detail'])->name('renungan.detail');
 
 Route::get('/galeri', [GaleriViewController::class, 'galeri'])->name('galeri');

@@ -12,11 +12,44 @@ class RenunganViewController extends Controller
 {
     public function renungan()
     {
-        $renungans = Renungan::latest()->paginate(6);
+        $renungans = Renungan::latest()->paginate(5);
+
+        $kategoriRenungans =  DB::table('kategori_renungan')
+            ->leftJoin('renungans', 'kategori_renungan.kategori', '=', 'renungans.kategori')
+            ->select('kategori_renungan.kategori',
+                DB::raw('COUNT(renungans.kategori) as total')
+            )
+            ->groupBy('kategori_renungan.kategori')
+            ->get();
+
+
         return view('frontend.renungan.index', [
             'breadcrumbs' => ['Beranda', 'Renungan'],
-            'renungans' => $renungans
+            'renungans' => $renungans,
+            'kategoriRenungans' => $kategoriRenungans
         ]);
+    }
+
+    public function renunganKategori($kategori)
+    {
+        $renungans = Renungan::where('kategori', $kategori)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(6);
+
+        $kategoriRenungans =  DB::table('kategori_renungan')
+            ->leftJoin('renungans', 'kategori_renungan.kategori', '=', 'renungans.kategori')
+            ->select('kategori_renungan.kategori',
+                DB::raw('COUNT(renungans.kategori) as total')
+            )
+            ->groupBy('kategori_renungan.kategori')
+            ->get();
+
+        return view('frontend.renungan.renungan-kategori',[
+            'breadcrumbs' => ['Beranda', 'Renungan'],
+            'renungans' => $renungans,
+            'kategoriRenungans' => $kategoriRenungans,
+            'kategori' => $kategori
+            ]);
     }
 
     public function detail($slug)

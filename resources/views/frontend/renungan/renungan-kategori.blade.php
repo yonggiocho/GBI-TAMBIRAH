@@ -10,7 +10,7 @@
     <section id="blog-posts" class="blog-posts section">
 
       <div class="container section-title" data-aos="fade-up">
-        <h2>Daftar Renungan</h2>
+        <h2>Kategori Renungan : <span style="font-style: italic;color:green">{{$kategori ?? ''}}</span></h2>
         <p>{{$identitas?->nama_website ?? ''}}</p>
     </div><!-- End Section Title -->
 
@@ -20,10 +20,10 @@
 
     <!-- SIDEBAR -->
     <div class="col-md-3">
-      <h4 class="mb-2">Kategori</h4 >
+      <h5 class="mb-3">Kategori</h5>
       <ul class="list-group list-group-flush" >
         @forelse($kategoriRenungans as $katRenungan)
-        <li class="list-group-item d-flex justify-content-between align-items-center"><a href="{{route('renungan.kategori',$katRenungan->kategori)}}">{{$loop->iteration}}. {{$katRenungan->kategori}}</a><span class="badge bg-success rounded-pill">{{$katRenungan->total}}</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><a href="{{route('renungan.kategori',$katRenungan->kategori)}}">{{$katRenungan->kategori}}</a><span class="badge bg-success rounded-pill">{{$katRenungan->total}}</span></li>
         @empty
         <li class="list-group-item d-flex justify-content-between align-items-center">Belum Ada Kategori</li>
         @endforelse
@@ -48,9 +48,11 @@
           <!-- TEKS -->
           <div class="col-md-8">
             <small class="text-muted">
-              <i class="bi bi-calendar2"></i>
+              <b class="text-success">{{ ucfirst($renungan->kategori) }} </b> |
+
               {{ $renungan->created_at->format('d F Y') }}
             </small>
+
 
             <h4 class="mt-2">
               <a href="{{ route('renungan.detail',$renungan->slug) }}">
@@ -59,10 +61,8 @@
             </h4>
 
             <p>
-              {{ Str::limit(strip_tags($renungan->isi), 150) }}<br>
-              <small class="text-primary">
-                <b><a style="color: green" href="{{route('renungan.kategori',$renungan->kategori)}}">{{ $renungan->kategori}}</a></b>
-              </small>
+              {{ Str::limit(strip_tags($renungan->isi), 150) }}
+
             </p>
 
 

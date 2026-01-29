@@ -19,22 +19,32 @@
 
               <article class="article rounded-3">
                 <div class="post-img overflow-hidden rounded-top-3">
-                  <div class="position-absolute px-3 py-2 text-white " style="background-color:rgba(126, 87, 194, 1); margin-top:20px; border-bottom-right-radius: 10px; border-top-right-radius: 10px;">{{$renungan[0]->kategori}}</div>
+
                   <img src="{{ $renungan[0]->gambar !== '/img/no_image.jpg' ? asset('storage/'.$renungan[0]->gambar) : asset('storage'.$renungan[0]->gambar) }}" alt="" class="img-fluid" style="height:400px; width: 100%; object-fit:cover">
+
                 </div>
 
-                <h2 class="title">{{$renungan[0]->judul}}</h2>
+
+                <h4 class="title">
+                  {{$renungan[0]->judul}}
+                </h4>
 
                 <div class="meta-top">
                   <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{$renungan[0]->penulis}}</li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> {{$renungan[0]->created_at->diffForHumans()}}</li>
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i><span style="font-size:14;color:green;font-style:italic">{{$renungan[0]->penulis}} </span></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-calendar2"></i><span style="font-size:14;color:green;font-style:italic">{{$renungan[0]->created_at->format('d F Y')}} </span></li>
+
+
                   </ul>
                 </div><!-- End meta top -->
 
-                <div class="content mb-4">
+                <div class="content mb-3">
                    {!!$renungan[0]->isi!!}
                 </div><!-- End post content -->
+
+                <small>
+                    Kategori:<b> <a style="font-size:14;color:green;" href="{{route('renungan.kategori',$renungan[0]->kategori)}}">{{$renungan[0]->kategori}} </a></b>
+                  </small>
 
                 <div class="meta-bottom">
                    <strong>Bagikan:</strong>

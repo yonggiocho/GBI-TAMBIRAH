@@ -29,8 +29,9 @@
 
                 <div class="meta-top">
                   <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{$warta[0]->penulis}}</li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i>{{$warta[0]->created_at->diffForHumans()}}</li>
+
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i><span style="font-size:14;color:green;font-style:italic">{{$warta[0]->penulis}} </span></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-calendar2"></i><span style="font-size:14;color:green;font-style:italic">{{$warta[0]->created_at->format('d F Y')}} </span></li>
                   </ul>
                 </div><!-- End meta top -->
 

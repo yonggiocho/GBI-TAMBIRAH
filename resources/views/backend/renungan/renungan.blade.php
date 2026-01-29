@@ -58,7 +58,7 @@
 
                                                         <th>No.</th>
                                                         <th>Judul</th>
-                                                        <th>Isi</th>
+                                                        <th>Kategori</th>
                                                         <th>Status</th>
                                                         <th>Gambar</th>
                                                         <th style="width: 85px;">Aksi</th>
@@ -69,7 +69,7 @@
                                                     <tr>
                                                       <td>{{$loop->iteration}}</td>
                                                       <td style="white-space: normal; word-wrap: break-word; max-width:150px">{{substr($renungan->judul, 0, 80).'...'}}</td>
-                                                      <td style="white-space: normal; word-wrap: break-word; max-width:200px">{{substr(strip_tags($renungan->isi), 0, 100).'...'}}</td>
+                                                      <td style="white-space: normal; word-wrap: break-word; max-width:200px">{{substr(strip_tags($renungan->kategori), 0, 100).'...'}}</td>
                                                        <td>
                                                             @php
                                                                 $status = $renungan->status == 'draft' ? 'publish':'draft';
