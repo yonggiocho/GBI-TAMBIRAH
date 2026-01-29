@@ -34,7 +34,6 @@
                     <li class="d-flex align-items-center"><i class="bi bi-person"></i><span style="font-size:14;color:green;font-style:italic">{{$renungan[0]->penulis}} </span></li>
                     <li class="d-flex align-items-center"><i class="bi bi-calendar2"></i><span style="font-size:14;color:green;font-style:italic">{{$renungan[0]->created_at->format('d F Y')}} </span></li>
 
-
                   </ul>
                 </div><!-- End meta top -->
 

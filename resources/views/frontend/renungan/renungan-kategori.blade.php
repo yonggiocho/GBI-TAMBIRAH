@@ -6,11 +6,11 @@
 @include('frontend.partials.breadcrumbs')
 
 
-        <!-- Blog Posts Section -->
+        <!-- Renungan Section -->
     <section id="blog-posts" class="blog-posts section">
 
       <div class="container section-title" data-aos="fade-up">
-        <h2>Kategori Renungan : <span style="font-style: italic;color:green">{{$kategori ?? ''}}</span></h2>
+        <h2>Kategori : <span style="font-style: italic;color:green">{{$kategori ?? ''}}</span></h2>
         <p>{{$identitas?->nama_website ?? ''}}</p>
     </div><!-- End Section Title -->
 
@@ -30,7 +30,7 @@
       </ul>
     </div>
 
-    <!-- KONTEN -->
+    <!-- konten -->
     <div class="col-md-9">
 
       @forelse($renungans as $renungan)
